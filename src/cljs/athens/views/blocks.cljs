@@ -714,7 +714,8 @@
 
 (defn publish-blocks-mouse-down
   [_ uid state]
-  (println "Publish button pushed on block " uid))
+  (println "Publish button pushed on block " uid)
+  (dispatch [:publish-modal/toggle]))
 
 
 (defn context-menu-el

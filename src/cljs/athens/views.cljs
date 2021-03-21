@@ -11,6 +11,7 @@
     [athens.views.daily-notes :refer [daily-notes-panel db-scroll-daily-notes]]
     [athens.views.devtool :refer [devtool-component]]
     [athens.views.filesystem :as filesystem]
+    [athens.views.publishing :as publishing]
     [athens.views.graph-page :as graph-page]
     [athens.views.left-sidebar :refer [left-sidebar]]
     [athens.views.node-page :refer [node-page-component]]
@@ -98,18 +99,21 @@
   []
   (let [route-name (subscribe [:current-route/name])
         loading    (subscribe [:loading?])
-        modal      (subscribe [:modal])]
+        modal      (subscribe [:modal])
+        publish-modal (subscribe [:publish-modal])]
     (fn []
       [:<>
        [alert]
        [athena-component]
        (cond
          (and @loading @modal) [filesystem/window]
+         (and @loading @publish-modal) [publishing/window]
 
          @loading [initial-spinner-component]
 
          :else [:<>
                 (when @modal [filesystem/window])
+                (when @publish-modal [publishing/window])
                 [:div (use-style app-wrapper-style)
                  [app-toolbar]
                  [left-sidebar]

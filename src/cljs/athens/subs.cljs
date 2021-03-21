@@ -132,3 +132,8 @@
   :modal
   (fn [db _]
     (:modal db)))
+
+(re-frame/reg-sub
+ :publish-modal
+ (fn [db _]
+   (:publish-modal db)))

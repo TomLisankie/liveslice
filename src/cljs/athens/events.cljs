@@ -331,6 +331,11 @@
   (fn [db _]
     (update db :modal not)))
 
+(reg-event-db
+ :publish-modal/toggle
+ (fn [db _]
+   (update db :publish-modal not)))
+
 
 ;; Window Size
 
