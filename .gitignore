@@ -30,3 +30,5 @@
 
 # electron build
 dist
+
+.project.clj.swp

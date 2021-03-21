@@ -712,6 +712,10 @@
     (.. js/navigator -clipboard (writeText data))
     (swap! state assoc :context-menu/show false)))
 
+(defn publish-blocks-mouse-down
+  [_ uid state]
+  (println "Publish button pushed on block " uid))
+
 
 (defn context-menu-el
   "Only option in context menu right now is copy block ref(s)."
@@ -739,7 +743,11 @@
                                        [button {:on-mouse-down (fn [e] (copy-refs-mouse-down e uid state))}
                                         (case show
                                           :one "Copy block ref"
-                                          :many "Copy block refs")]]])))})))
+                                          :many "Copy block refs")]
+                                       [button {:on-mouse-down (fn [e] (publish-blocks-mouse-down e uid state))}
+                                        (case show
+                                          :one "Publish block"
+                                          :many "Publish blocks")]]])))})))
 
 
 (defn block-refs-count-el
